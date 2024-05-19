@@ -1,0 +1,82 @@
+APIs:
+- RegisterRestaurant:
+  - params: Restaurant #Entity
+
+- SearchRestaurant:
+  - params:
+    - filters: [name, location, rating, cost of two, veg, etc.]
+  - Return:
+    - Restaurant List
+
+- AddSlot:
+  - params: 
+    - Slot #Entity
+    - Restaurant
+  
+- BookTable:
+  - params:
+    - User # Entity
+    - Restaurant
+    - Slot
+
+Classes:
+  - User
+  - Restaurant (Venue)
+  - Slot
+  - RestaurantRegistry (Singleton)
+
+User:
+  - var:
+    - [id, name, pwd]
+  - methods:
+    - login():
+      - var: [id, pwd]
+    - logout()
+
+Venue:
+  - var:
+    - id: int
+    - name: string
+    - address: string
+    - rating: int
+    - slots: list/ dict ?
+    - bookings: list/dict ?
+  
+  - methods:
+    - add_slot:
+      - var:
+        - slot: Slot
+    - book_table:
+      - var:
+        - slot: Slot
+        - user: User
+        - num_people: int
+    - is_slot_available:
+      - var: 
+        - slot: Slot
+    - matches_search:
+      - var:
+        - filters: []
+        - query: string
+
+Restaurant:
+  - var:
+    - cuisines: []
+  
+  - methods:
+    - matches_search() :
+    - is_slot_available() :
+
+RegisterRestaurant:
+  - var:
+    - restaurants: []
+  
+  - methods:
+    - register_restaurant:
+      - var:
+        - restaurant: Restaurant
+    - search_restaurant:
+      - var:
+        - query: string
+        - filters: []
+
